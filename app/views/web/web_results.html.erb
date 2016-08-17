@@ -1,0 +1,35 @@
+ <% if @results && !@results.items.empty? %>
+
+      <% @results.items.each do |item| %>
+        
+          <h4><%= link_to item.htmlTitle.html_safe, item.link %></h4>
+          
+            <% if item['pagemap'] &&
+                  item['pagemap']['cse_thumbnail'] &&
+                  img = item.pagemap.cse_thumbnail.first %>
+              
+                <%= image_tag(img.src, width: '200px') %>
+              
+              
+                <%= item.htmlSnippet.html_safe %>
+              
+            <% else %>
+              <%= item.htmlSnippet.html_safe %>
+            <% end %>
+         
+      <% end %>
+   
+        <% if @results.previous_page %>
+          <%= link_to '<< Previous', search_path(q: params[:q], page: @results.previous_page)%>
+        <% end %>
+        <% @results.pages.times do |i| %>
+          <%= link_to i + 1, search_path(q: params[:q], page: i+1) %>
+        <% end %>
+        <% if @results.next_page %>
+          <%= link_to 'Next >>', search_path(q: params[:q], page: @results.next_page) %>
+        <% end %>
+      
+  <% else %>
+    <h4>No results</h4>
+
+    <% end %>
