@@ -1,9 +1,7 @@
-
-      <%= form_tag search_path, method: :get  do %>
-        
-          <%= text_field_tag :q, params[:q] %>
-          <%= submit_tag "Search" %>
-        
-      <% end %>
-    <!--This is the results page-->
+<!--This is the home page-->
+<%= form_tag search_path, method: :get  do %>      
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+    
  

@@ -1,1 +1,33 @@
 <!--image search results go here-->
+<%= form_tag image_search_path, method: :get  do %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if @results && !@results.items.empty? %>
+
+	<% @results.items.each do |item| %>
+          
+     	<% if item['pagemap'] && item['pagemap']['cse_thumbnail'] && img = item.pagemap.cse_thumbnail.first %>
+              
+      <%= link_to image_tag(img.src, width: '200px'), item.link %>
+      
+      <% end %>
+
+  <% end %>
+
+		<% if @results.previous_page %>
+		  <%= link_to '<< Previous', image_search_path(q: params[:q], page: @results.previous_page)%>
+		  <% end %>
+
+		<% @results.pages.times do |i| %>
+		  <%= link_to i + 1, image_search_path(q: params[:q], page: i+1) %>
+		<% end %>
+		      
+		<% if @results.next_page %>
+		  <%= link_to 'Next >>', image_search_path(q: params[:q], page: @results.next_page) %>
+		<% end %>
+
+<% else %>
+  <h4>No results</h4>
+<% end %>

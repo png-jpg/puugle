@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'web#index'
   get 'search' => 'web#web_results'
+  get 'image_search' => 'web#image_results'
+  get 'images' => 'web#images'
   # post 'search' => 'web#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
