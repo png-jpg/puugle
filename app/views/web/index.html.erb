@@ -1,7 +1,18 @@
 <!--This is the home page-->
-<%= form_tag search_path, method: :get  do %>      
-  <%= text_field_tag :q, params[:q] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div class= "home-layout">
+  
+  <%= image_tag("logo.png", :alt => "logo", class: "home-logo") %>
+  <%= form_tag search_path, method: :get  do %>
+
+    <div class = "query">
+      <div class = "form-group">      
+        <%= text_field_tag :q, params[:q], class: "search-bar form-control" %>
+      </div>
+
+      <div class= "search-btn">
+        <%= submit_tag "Search", class: "btn btn-info" %>
+      </div>
+    </div>
     
- 
+  <% end %>
+</div>
